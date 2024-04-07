@@ -47,12 +47,12 @@ export default ({
       <NavLink href="#">About</NavLink>
       <NavLink href="#">Blog</NavLink>
       <NavLink href="#">Pricing</NavLink>
-      <NavLink href="#">Login</NavLink>
+      <NavLink href="/login">Login</NavLink>
     </NavLinks>
   ],
   heading = (
     <>
-      Find Perfect Hotels
+      Find Perfect Cars
       <wbr />
       <br />
       <span tw="text-primary-500">anywhere you go.</span>
@@ -62,7 +62,7 @@ export default ({
   primaryActionUrl = "#",
   primaryActionText = "Sign Up",
   secondaryActionUrl = "#",
-  secondaryActionText = "Search Hotels"
+  secondaryActionText = "Search Cars"
 }) => {
   return (
     <Container>
