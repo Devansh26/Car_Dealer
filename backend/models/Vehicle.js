@@ -11,7 +11,7 @@ const vehicleSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     
     // Uncomment later when you have the images
-    // images: { type: Array, required: true },
+    images: { type: Array, required: true },
     // Add any other fields you need for vehicles
 });
 
