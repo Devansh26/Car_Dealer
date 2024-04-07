@@ -64,3 +64,7 @@ exports.logout = async (req, res) => {
     res.status(500).json({ status: false, message: err.message });
   }
 };
+
+exports.test = async (req, res) => {
+  res.status(200).json({ status: true, message: 'Test route' });
+};
