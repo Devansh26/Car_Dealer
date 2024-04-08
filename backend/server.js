@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoutes = require("./routes/authRoutes");
 const vehicleRoutes = require("./routes/vehicleRoutes");
+const orderRoutes = require('./routes/orderRoutes');
 const cors = require("cors");
 
 dotenv.config();
@@ -27,5 +28,6 @@ mongoose
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/vehicles", vehicleRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

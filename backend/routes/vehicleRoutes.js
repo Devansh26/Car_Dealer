@@ -10,4 +10,8 @@ router.get('/', auth, vehicleController.getAllVehicles);
 // GET a vehicle by ID (protected route)
 router.get('/:id', auth, vehicleController.getVehicleById);
 
+// Buy a vehicle (protected route)
+router.post('/buy/:id', auth, vehicleController.buyVehicle);
+
+
 module.exports = router;

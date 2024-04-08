@@ -15,7 +15,7 @@ const auth = (req, res, next) => {
     // Call the next middleware
     next();
   } catch (err) {
-    res.status(401).json({ message: 'Invalid or missing token' });
+    res.status(401).json({ status: false, message: 'Invalid or missing token' });
   }
 };
 
