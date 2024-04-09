@@ -30,6 +30,7 @@ exports.getVehicleById = async (req, res) => {
 exports.buyVehicle = async (req, res) => {
     try {
         const vehicle = await Vehicle.findById(req.params.id);
+        const { data } = req.body;
         if (!vehicle) {
             return res.status(404).json({ status: false, message: "Vehicle not found" });
         }
@@ -39,7 +40,7 @@ exports.buyVehicle = async (req, res) => {
             vehicle_id: vehicle._id,
             user_id: req.userId, // Assuming req.userId is set by the auth middleware
             delivery_date: moment().add(2, 'months').toDate(), // Set delivery date to 2 months from now
-            order_message: "Please visit our nearest showroom for documentation and payment.", 
+            order_message: "Please visit our nearest showroom for documentation and payment.",
         });
 
         await order.save();
@@ -50,7 +51,7 @@ exports.buyVehicle = async (req, res) => {
             order,
         });
     } catch (err) {
-        res.status(500).json({ 
+        res.status(500).json({
           status: false,
           message: err.message });
     }

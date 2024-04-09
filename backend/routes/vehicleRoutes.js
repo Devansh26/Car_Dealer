@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const vehicleController = require('../controllers/vehicleController');
 const auth = require('../middlewares/auth');
+const data = [];
 
 // GET all vehicles (protected route)
 router.get('/', auth, vehicleController.getAllVehicles);
