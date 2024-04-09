@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js";
-import {Container as ContainerBase} from "../components/misc/Layouts";
+import { Container as ContainerBase } from "../components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
-import {ReactComponent as SignUpIcon} from "feather-icons/dist/icons/user-plus.svg";
+import { ReactComponent as SignUpIcon } from "feather-icons/dist/icons/user-plus.svg";
 import illustration from "../images/signup-illustration.svg";
 import logo from "../images/logo.svg";
+import CarService from "../Service/CarService";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 import "../css/signup.css";
 
@@ -50,49 +54,106 @@ export default ({
                     privacyPolicyUrl = "#",
                     signInUrl = "/login",
                     homeUrl = "/",
-                }) => (
-    <AnimationRevealPage className="container">
-        <Container>
-            <Content>
-                <MainContainer>
-                    <LogoLink href={logoLinkUrl}>
-                        <LogoImage src={logo} alt="Logo"/>
-                    </LogoLink>
-                    <MainContent>
-                        <Heading>{headingText}</Heading>
-                        <FormContainer>
-                            <Form>
-                                <Input type="text" placeholder="First Name"/>
-                                <Input type="text" placeholder="Last Name"/>
-                                <Input type="email" placeholder="Email"/>
-                                <Input type="password" placeholder="Password"/>
-                                <SubmitButton type="submit">
-                                    <SubmitButtonIcon className="icon"/>
-                                    <span className="text">{submitButtonText}</span>
-                                </SubmitButton>
-                                <LinksContainer>
-                                    <p>
-                                        I agree to abide by treact's{" "}
-                                        <Link href={tosUrl}>Terms of Service</Link> and its{" "}
-                                        <Link href={privacyPolicyUrl}>Privacy Policy</Link>
-                                    </p>
-                                    <p>
-                                        Already have an account?{" "}
-                                        <Link href={signInUrl}>Sign In</Link>
-                                    </p>
-                                    <p>
-                                        <a href={homeUrl}>Back to Home</a>
-                                    </p>
-                                </LinksContainer>
-                            </Form>
+                }) => {
+    const [formData, setFormData] = useState({
+        firstName: "",
+        lastName: "",
+        username: "",
+        password: ""
+    });
 
-                        </FormContainer>
-                    </MainContent>
-                </MainContainer>
-                <IllustrationContainer>
-                    <IllustrationImage imageSrc={illustrationImageSrc}/>
-                </IllustrationContainer>
-            </Content>
-        </Container>
-    </AnimationRevealPage>
-);
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+    const navigate = useNavigate();
+    const handleSubmit = async e => {
+        e.preventDefault();
+        try {
+            const response = await CarService.signup(formData);
+            if (response.data.status) {
+                toast.success(response.data.message);
+                // Redirect or perform any other action upon successful signup
+                navigate('/');
+            } else {
+                toast.error(response.data.message);
+            }
+        } catch (error) {
+            console.error("Error during signup:", error);
+            toast.error("Error during signup");
+        }
+    };
+
+    return (
+        <AnimationRevealPage className="container">
+            <Container>
+                <Content>
+                    <MainContainer>
+                        <LogoLink href={logoLinkUrl}>
+                            <LogoImage src={logo} alt="Logo"/>
+                        </LogoLink>
+                        <MainContent>
+                            <Heading>{headingText}</Heading>
+                            <FormContainer>
+                                <Form onSubmit={handleSubmit}>
+                                    <Input
+                                        type="text"
+                                        placeholder="First Name"
+                                        name="firstName"
+                                        value={formData.firstName}
+                                        onChange={handleChange}
+                                    />
+                                    <Input
+                                        type="text"
+                                        placeholder="Last Name"
+                                        name="lastName"
+                                        value={formData.lastName}
+                                        onChange={handleChange}
+                                    />
+                                    <Input
+                                        type="email"
+                                        placeholder="Email"
+                                        name="username"
+                                        value={formData.username}
+                                        onChange={handleChange}
+                                    />
+                                    <Input
+                                        type="password"
+                                        placeholder="Password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                    />
+                                    <SubmitButton type="submit">
+                                        <SubmitButtonIcon className="icon"/>
+                                        <span className="text">{submitButtonText}</span>
+                                    </SubmitButton>
+                                    <LinksContainer>
+                                        <p>
+                                            I agree to abide by treact's{" "}
+                                            <Link href={tosUrl}>Terms of Service</Link> and its{" "}
+                                            <Link href={privacyPolicyUrl}>Privacy Policy</Link>
+                                        </p>
+                                        <p>
+                                            Already have an account?{" "}
+                                            <Link href={signInUrl}>Sign In</Link>
+                                        </p>
+                                        <p>
+                                            <a href={homeUrl}>Back to Home</a>
+                                        </p>
+                                    </LinksContainer>
+                                </Form>
+                            </FormContainer>
+                        </MainContent>
+                    </MainContainer>
+                    <IllustrationContainer>
+                        <IllustrationImage imageSrc={illustrationImageSrc}/>
+                    </IllustrationContainer>
+                </Content>
+            </Container>
+        </AnimationRevealPage>
+    );
+}

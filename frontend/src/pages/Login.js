@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import AnimationRevealPage from "../helpers/AnimationRevealPage.js";
-import {Container as ContainerBase} from "../components/misc/Layouts";
+import { Container as ContainerBase } from "../components/misc/Layouts";
 import tw from "twin.macro";
 import styled from "styled-components";
 import illustration from "../images/login-illustration.svg";
 import logo from "../images/logo.svg";
-import {ReactComponent as LoginIcon} from "feather-icons/dist/icons/log-in.svg";
+import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
+import CarService from "../Service/CarService";
+import {toast, ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
+
+import "../css/login.css"
 
 const Container = tw(ContainerBase)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`;
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`;
@@ -45,44 +51,103 @@ export default ({
                     forgotPasswordUrl = "#",
                     signupUrl = "/signup",
                     homeUrl = "/",
-                }) => (
-    <AnimationRevealPage>
-        <Container>
-            <Content>
-                <MainContainer>
-                    <LogoLink href={logoLinkUrl}>
-                        <LogoImage src={logo} alt="Logo"/>
-                    </LogoLink>
-                    <MainContent>
-                        <Heading>{headingText}</Heading>
-                        <FormContainer>
-                            <Form>
-                                <Input type="email" placeholder="Email" required/>
-                                <Input type="password" placeholder="Password" required/>
-                                <SubmitButton type="submit">
-                                    <SubmitButtonIcon className="icon"/>
-                                    <span className="text">{submitButtonText}</span>
-                                </SubmitButton>
-                            </Form>
-                            <LinksContainer>
-                                <p>
-                                    <a href={forgotPasswordUrl}>Forgot Password?</a>
-                                </p>
-                                <p>
-                                    Don't have an account?{" "}
-                                    <a href={signupUrl}>Sign Up</a>
-                                </p>
-                                <p>
-                                    <a href={homeUrl}>Back to Home</a>
-                                </p>
-                            </LinksContainer>
-                        </FormContainer>
-                    </MainContent>
-                </MainContainer>
-                <IllustrationContainer>
-                    <IllustrationImage imageSrc={illustrationImageSrc}/>
-                </IllustrationContainer>
-            </Content>
-        </Container>
-    </AnimationRevealPage>
-);
+                }) => {
+    const [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    });
+
+
+
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+    const navigate = useNavigate();
+    const handleSubmit = async e => {
+        e.preventDefault();
+        try {
+            const response = await CarService.login(formData);
+            //console.log(response.data.status);
+            if (response.data.status) {
+                //alert("success");
+                toast.success("Login successful");
+
+                const { token, firstName, username } = response.data;
+                localStorage.setItem("token", token);
+                localStorage.setItem("firstName", firstName);
+                localStorage.setItem("username", username);
+
+                // Redirect or perform any other action upon successful login
+                navigate('/');
+            } else {
+                toast.error("Login failed");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+            toast.error("Error during login");
+        }
+    };
+
+    return (
+        <AnimationRevealPage>
+            <Container>
+                <Content>
+                    <MainContainer>
+                        <ToastContainer />
+                        <LogoLink href={logoLinkUrl}>
+                            <LogoImage src={logo} alt="Logo" />
+                        </LogoLink>
+                        <MainContent>
+                            <Heading>{headingText}</Heading>
+                            <FormContainer>
+                                <Form onSubmit={handleSubmit}>
+                                    <Input
+                                        type="email"
+                                        placeholder="Email"
+                                        name="username"
+                                        value={formData.username}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <Input
+                                        type="password"
+                                        placeholder="Password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <SubmitButton type="submit">
+                                        <SubmitButtonIcon className="icon" />
+                                        <span className="text">{submitButtonText}</span>
+                                    </SubmitButton>
+                                </Form>
+                                <LinksContainer>
+                                    <p>
+                                        <a href={forgotPasswordUrl}>Forgot Password?</a>
+                                    </p>
+                                    <p>
+                                        Don't have an account?{" "}
+                                        <a href={signupUrl}>Sign Up</a>
+                                    </p>
+                                    <p>
+                                        <a href={homeUrl}>Back to Home</a>
+                                    </p>
+                                </LinksContainer>
+                            </FormContainer>
+                        </MainContent>
+                    </MainContainer>
+                    <IllustrationContainer>
+                        <IllustrationImage imageSrc={illustrationImageSrc} />
+                    </IllustrationContainer>
+                </Content>
+            </Container>
+        </AnimationRevealPage>
+
+
+    );
+};

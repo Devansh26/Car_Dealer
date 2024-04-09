@@ -1,27 +1,24 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, {useEffect, useState} from "react";
+
+import ReactModalAdapter from "../../helpers/ReactModalAdapter.js";
+import {motion} from "framer-motion";
 import tw from "twin.macro";
 import styled from "styled-components";
-import { css } from "styled-components/macro"; //eslint-disable-line
-import { Container, ContentWithPaddingXl } from "../misc/Layouts.js";
-import { SectionHeading } from "../misc/Headings.js";
-import { PrimaryButton as PrimaryButtonBase } from "../misc/Buttons.js";
-import { ReactComponent as StarIcon } from "../../images/star-icon.svg";
-import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-5.svg";
-import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-7.svg";
+import {css} from "styled-components/macro";
+import {Container, ContentWithPaddingXl} from "../misc/Layouts.js";
+import {SectionHeading} from "../misc/Headings.js";
+// import { ReactComponent as StarIcon } from "../../images/star-icon.svg";
+import {ReactComponent as CloseIcon} from "feather-icons/dist/icons/x.svg";
+import {PrimaryButton as PrimaryButtonBase} from "../misc/Buttons.js";
+import {ReactComponent as SvgDecoratorBlob1} from "../../images/svg-decorator-blob-5.svg";
+import {ReactComponent as SvgDecoratorBlob2} from "../../images/svg-decorator-blob-7.svg";
+import CarService from "../../Service/CarService";
+
+import "../../css/cars.css";
+
 
 const HeaderRow = tw.div`flex justify-between items-center flex-col xl:flex-row`;
 const Header = tw(SectionHeading)``;
-const TabsControl = tw.div`flex flex-wrap bg-gray-200 px-2 py-2 rounded leading-none mt-12 xl:mt-0`;
-
-const TabControl = styled.div`
-  ${tw`cursor-pointer px-6 py-3 mt-2 sm:mt-0 sm:mr-2 last:mr-0 text-gray-600 font-medium rounded-sm transition duration-300 text-sm sm:text-base w-1/2 sm:w-auto text-center`}
-  &:hover {
-    ${tw`bg-gray-300 text-gray-700`}
-  }
-  ${props => props.active && tw`bg-primary-500! text-gray-100!`}
-  }
-`;
 
 const TabContent = tw(motion.div)`mt-6 flex flex-wrap sm:-mr-10 md:-mr-6 lg:-mr-12`;
 const CardContainer = tw.div`mt-10 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 sm:pr-10 md:pr-6 lg:pr-12`;
@@ -38,18 +35,13 @@ const CardRating = styled.div`
   }
 `;
 
-const CardHoverOverlay = styled(motion.div)`
-  background-color: rgba(255, 255, 255, 0.5);
-  ${tw`absolute inset-0 flex justify-center items-center`}
-`;
-const CardButton = tw(PrimaryButtonBase)`text-sm`;
-
-const CardReview = tw.div`font-medium text-xs text-gray-600`;
+const CardButton = tw(PrimaryButtonBase)`text-xs py-3 px-3`;
 
 const CardText = tw.div`p-4 text-gray-900`;
-const CardTitle = tw.h5`text-lg font-semibold group-hover:text-primary-500`;
+const CardTitle = tw.h5`text-xl font-semibold mb-2`;
 const CardContent = tw.p`mt-1 text-sm font-medium text-gray-600`;
 const CardPrice = tw.p`mt-4 text-xl font-bold`;
+const HighlightedText = tw.span`bg-primary-500 text-gray-100 px-4 transform -skew-x-12 inline-block`;
 
 const DecoratorBlob1 = styled(SvgDecoratorBlob1)`
   ${tw`pointer-events-none -z-20 absolute right-0 top-0 h-64 w-64 opacity-15 transform translate-x-2/3 -translate-y-12 text-pink-400`}
@@ -58,266 +50,153 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
   ${tw`pointer-events-none -z-20 absolute left-0 bottom-0 h-80 w-80 opacity-15 transform -translate-x-2/3 text-primary-500`}
 `;
 
-export default ({
-  heading = "Checkout the Menu",
-  tabs = {
-    Starters: [
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Veg Mixer",
-        content: "Tomato Salad & Carrot",
-        price: "$5.99",
-        rating: "5.0",
-        reviews: "87",
-        url: "#"
-      },
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Macaroni",
-        content: "Cheese Pizza",
-        price: "$2.99",
-        rating: "4.8",
-        reviews: "32",
-        url: "#"
-      },
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327??ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Nelli",
-        content: "Hamburger & Fries",
-        price: "$7.99",
-        rating: "4.9",
-        reviews: "89",
-        url: "#"
-      },
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Jalapeno Poppers",
-        content: "Crispy Soyabeans",
-        price: "$8.99",
-        rating: "4.6",
-        reviews: "12",
-        url: "#"
-      },
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1473093226795-af9932fe5856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Cajun Chicken",
-        content: "Roasted Chicken & Egg",
-        price: "$7.99",
-        rating: "4.2",
-        reviews: "19",
-        url: "#"
-      },
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Chillie Cake",
-        content: "Deepfried Chicken",
-        price: "$2.99",
-        rating: "5.0",
-        reviews: "61",
-        url: "#"
-      },
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Guacamole Mex",
-        content: "Mexican Chilli",
-        price: "$3.99",
-        rating: "4.2",
-        reviews: "95",
-        url: "#"
-      },
-      {
-        imageSrc:
-          "https://images.unsplash.com/photo-1565310022184-f23a884f29da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-        title: "Carnet Nachos",
-        content: "Chilli Crispy Nachos",
-        price: "$3.99",
-        rating: "3.9",
-        reviews: "26",
-        url: "#"
-      }
-    ],
-    Main: getRandomCards(),
-    Soup: getRandomCards(),
-    Desserts: getRandomCards()
+const StyledModal = styled(ReactModalAdapter)`
+  &.mainHeroModal__overlay {
+    ${tw`fixed inset-0 z-50`}
   }
-}) => {
-  /*
-   * To customize the tabs, pass in data using the `tabs` prop. It should be an object which contains the name of the tab
-   * as the key and value of the key will be its content (as an array of objects).
-   * To see what attributes are configurable of each object inside this array see the example above for "Starters".
-   */
-  const tabsKeys = Object.keys(tabs);
-  const [activeTab, setActiveTab] = useState(tabsKeys[0]);
 
-  return (
-    <Container>
-      <ContentWithPaddingXl>
-        <HeaderRow>
-          <Header>{heading}</Header>
-          <TabsControl>
-            {Object.keys(tabs).map((tabName, index) => (
-              <TabControl key={index} active={activeTab === tabName} onClick={() => setActiveTab(tabName)}>
-                {tabName}
-              </TabControl>
-            ))}
-          </TabsControl>
-        </HeaderRow>
+  &.mainHeroModal__content {
+    width: 500px;
+    height: 400px;
+    ${tw`xl:mx-auto m-4 sm:m-16 absolute inset-0 flex justify-center items-center rounded-lg bg-white outline-none`} /* Removed fixed sizing */
+  }
 
-        {tabsKeys.map((tabKey, index) => (
-          <TabContent
-            key={index}
-            variants={{
-              current: {
-                opacity: 1,
-                scale:1,
-                display: "flex",
-              },
-              hidden: {
-                opacity: 0,
-                scale:0.8,
-                display: "none",
-              }
-            }}
-            transition={{ duration: 0.4 }}
-            initial={activeTab === tabKey ? "current" : "hidden"}
-            animate={activeTab === tabKey ? "current" : "hidden"}
-          >
-            {tabs[tabKey].map((card, index) => (
-              <CardContainer key={index}>
-                <Card className="group" href={card.url} initial="rest" whileHover="hover" animate="rest">
-                  <CardImageContainer imageSrc={card.imageSrc}>
-                    <CardRatingContainer>
-                      <CardRating>
-                        <StarIcon />
-                        {card.rating}
-                      </CardRating>
-                      <CardReview>({card.reviews})</CardReview>
-                    </CardRatingContainer>
-                    <CardHoverOverlay
-                      variants={{
-                        hover: {
-                          opacity: 1,
-                          height: "auto"
-                        },
-                        rest: {
-                          opacity: 0,
-                          height: 0
-                        }
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <CardButton>Buy Now</CardButton>
-                    </CardHoverOverlay>
-                  </CardImageContainer>
-                  <CardText>
-                    <CardTitle>{card.title}</CardTitle>
-                    <CardContent>{card.content}</CardContent>
-                    <CardPrice>{card.price}</CardPrice>
-                  </CardText>
-                </Card>
-              </CardContainer>
-            ))}
-          </TabContent>
-        ))}
-      </ContentWithPaddingXl>
-      <DecoratorBlob1 />
-      <DecoratorBlob2 />
-    </Container>
-  );
+  .content {
+    ${tw`max-w-md lg:p-8 p-4 relative`} /* Responsive sizing with max-width */ box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  address {
+    ${tw`block mt-4 p-2 bg-gray-100 rounded-md`} /* Adding padding and background color */
+  }
+
+  .highlight {
+    ${tw`text-primary-500 font-bold`} /* Applying a bold font and a custom color */
+  }
+
+`;
+
+const CloseModalButton = tw.button`absolute top-0 right-0 mt-8 mr-8 hocus:text-primary-500`;
+
+
+const CarList = () => {
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        // Fetch cars data from the API
+
+        const fetchCars = async () => {
+            try {
+                const response = await CarService.getCars();
+                setCars(response); // Set the fetched cars data to the state
+            } catch (error) {
+                console.error("Error fetching cars:", error);
+            }
+        };
+
+        fetchCars();
+    }, []);
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    const [selectedCar, setSelectedCar] = useState(null);
+    const [carResponse, setCarResponse] = useState(false);
+
+    const toggleModalClose = () => setModalIsOpen(!modalIsOpen);
+
+    const toggleModal = async (car) => {
+        try {
+
+            const response = await CarService.buyVehicle(car._id);
+            console.log(response);
+            if (response.status === true) {
+                // Set the car response state to true
+                setCarResponse(true);
+
+                // Once the purchase is successful, set the selected car and open the modal
+                setSelectedCar(car);
+                setModalIsOpen(!modalIsOpen);
+            } else {
+                setCarResponse(false);
+                // You may want to handle the error or display a message to the user
+                console.error("Error buying car:", response.message);
+            }
+        } catch (error) {
+            // If there was an error with the API call, set the car response state to false
+            setCarResponse(false);
+            console.error("Error buying car:", error);
+        }
+    };
+
+
+    return (
+        <Container>
+            <ContentWithPaddingXl>
+                <HeaderRow>
+                    <Header>#Trending <HighlightedText>Cars</HighlightedText></Header>
+                </HeaderRow>
+
+                <TabContent>
+                    {cars.map((car, index) => (
+                        <CardContainer key={index}>
+                            <Card href={car.url} initial="rest" whileHover="hover" animate="rest">
+                                <CardImageContainer imageSrc={car.imageSrc}>
+                                    <CardRatingContainer>
+                                        <CardRating>
+                                            {car.year}
+                                        </CardRating>
+                                    </CardRatingContainer>
+                                </CardImageContainer>
+                                <CardText>
+                                    <CardTitle>{car.make}</CardTitle>
+                                    <CardContent>{car.model}</CardContent>
+                                    <CardContent>{car.color}</CardContent>
+                                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                        <CardPrice>{car.price}</CardPrice>
+                                        <CardButton onClick={() => toggleModal(car)}>Buy Now</CardButton>
+                                    </div>
+                                </CardText>
+                            </Card>
+                        </CardContainer>
+                    ))}
+                </TabContent>
+            </ContentWithPaddingXl>
+            <DecoratorBlob1/>
+            <DecoratorBlob2/>
+
+            <StyledModal
+                closeTimeoutMS={300}
+                className="mainHeroModal"
+                isOpen={modalIsOpen}
+                onRequestClose={toggleModalClose}
+                shouldCloseOnOverlayClick={true}
+            >
+                <CloseModalButton onClick={toggleModalClose}>
+                    <CloseIcon tw="w-6 h-6"/>
+                </CloseModalButton>
+                <div className="content">
+                    {carResponse ? (
+                        <>
+                            <h2 className="text-xl font-bold text-center mb-4">Congratulations 🎉</h2>
+                            <p>
+                                Your reservation for <span className="highlight">{selectedCar?.make}</span> <span className="highlight">{selectedCar?.model}</span> with
+                                color <span className="highlight"> {selectedCar?.color} </span> is done.
+                            </p>
+                            <p className="mb-2">Come to the following store for further process:</p>
+                            <address>480 University Ave Suite 1500, Toronto, ON M5G 1V2</address>
+                            <a href="/orders" className="text-primary-500 hover:underline">
+                                Check your order status here
+                            </a>
+                        </>
+                    ) : (
+                        <p className="text-center">Vehicle not found. Sorry!</p>
+                    )}
+                </div>
+            </StyledModal>
+
+        </Container>
+    );
 };
 
-/* This function is only there for demo purposes. It populates placeholder cards */
-const getRandomCards = () => {
-  const cards = [
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Chicken Chilled",
-      content: "Chicken Main Course",
-      price: "$5.99",
-      rating: "5.0",
-      reviews: "87",
-      url: "#"
-    },
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1582254465498-6bc70419b607?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Samsa Beef",
-      content: "Fried Mexican Beef",
-      price: "$3.99",
-      rating: "4.5",
-      reviews: "34",
-      url: "#"
-    },
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1565310022184-f23a884f29da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Carnet Nachos",
-      content: "Chilli Crispy Nachos",
-      price: "$3.99",
-      rating: "3.9",
-      reviews: "26",
-      url: "#"
-    },
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Guacamole Mex",
-      content: "Mexican Chilli",
-      price: "$3.99",
-      rating: "4.2",
-      reviews: "95",
-      url: "#"
-    },
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Chillie Cake",
-      content: "Deepfried Chicken",
-      price: "$2.99",
-      rating: "5.0",
-      reviews: "61",
-      url: "#"
-    },
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327??ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Nelli",
-      content: "Hamburger & Fries",
-      price: "$7.99",
-      rating: "4.9",
-      reviews: "89",
-      url: "#"
-    },
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Jalapeno Poppers",
-      content: "Crispy Soyabeans",
-      price: "$8.99",
-      rating: "4.6",
-      reviews: "12",
-      url: "#"
-    },
-    {
-      imageSrc:
-        "https://images.unsplash.com/photo-1473093226795-af9932fe5856?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80",
-      title: "Cajun Chicken",
-      content: "Roasted Chicken & Egg",
-      price: "$7.99",
-      rating: "4.2",
-      reviews: "19",
-      url: "#"
-    }
-  ];
-
-  // Shuffle array
-  return cards.sort(() => Math.random() - 0.5);
-};
+export default CarList;

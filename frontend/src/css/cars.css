@@ -1,0 +1,18 @@
+
+
+/* Inside your StyledModal component */
+.content {
+    text-align: center;
+}
+
+.content h2 {
+    color: green;
+    font-size: 2.5rem;
+}
+
+.content a:hover {
+    text-decoration: underline;
+    color: darkblue;
+    transition: color 0.2s ease-in-out;
+}
+
