@@ -77,7 +77,7 @@ export default ({
             if (response.data.status) {
                 toast.success(response.data.message);
                 // Redirect or perform any other action upon successful signup
-                navigate('/');
+                navigate('/login');
             } else {
                 toast.error(response.data.message);
             }

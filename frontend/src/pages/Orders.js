@@ -23,6 +23,27 @@ const Orders = () => {
         fetchOrders();
     }, []);
 
+    const handleCancelOrder = async (orderId) => {
+        try {
+            const response = await CarService.cancelOrder(orderId);
+
+            // Update the orders state to reflect the canceled order
+            setOrders((prevOrders) =>
+                prevOrders.map((order) =>
+                    order.order_id === orderId
+                        ? { ...order, order_status: "Canceled" }
+                        : order
+                )
+            );
+
+            console.log(response); // For debugging and/or success message
+        } catch (error) {
+            console.error("Error canceling order:", error);
+            // Handle error (e.g., display an error message to the user)
+        }
+    };
+
+
     return (
         <AnimationRevealPage>
             <Header/>
@@ -36,6 +57,7 @@ const Orders = () => {
                         <th>Vehicle Model</th>
                         <th>Order Status</th>
                         <th>Delivery Date</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -46,6 +68,13 @@ const Orders = () => {
                             <td>{order.vehicle.model}</td>
                             <td>{order.order_status}</td>
                             <td>{order.delivery_date}</td>
+                            <td>
+                                {order.order_status !== "Canceled" && (
+                                    <button onClick={() => handleCancelOrder(order.order_id)}>
+                                        Cancel
+                                    </button>
+                                )}
+                            </td>
                         </tr>
                     ))}
                     </tbody>

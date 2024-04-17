@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Cars from "./pages/Cars";
 import GlobalStyles from './styles/GlobalStyles';
 import Orders from "./pages/Orders";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
     return (
@@ -18,6 +19,9 @@ function App() {
                     <Route path="/signup" element={<Signup/>}/>
                     <Route path="/cars" element={<Cars/>}/>
                     <Route path="/orders" element={<Orders/>}/>
+
+                    <Route path="/product-details/:carId" element={<ProductDetails />} />
+
                 </Routes>
             </Router>
         </>

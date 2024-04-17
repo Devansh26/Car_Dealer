@@ -7,6 +7,6 @@ const auth = require('../middlewares/auth');
 router.get('/my-orders', auth, orderController.getUserOrders);
 
 // Cancel an order
-router.patch('/cancel/:id', auth, orderController.cancelOrder);
+router.delete('/cancel/:id', auth, orderController.cancelOrder);
 
 module.exports = router;

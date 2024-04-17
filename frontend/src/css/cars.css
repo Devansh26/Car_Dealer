@@ -16,3 +16,21 @@
     transition: color 0.2s ease-in-out;
 }
 
+.rc-slider-track {
+    background-color: #3399ff;
+    height: 6px;
+}
+
+.rc-slider-handle {
+    background-color: #ff9900;
+    border: 3px solid #fff;
+    width: 20px;
+    height: 20px;
+    margin-top: -7px; /* Adjusts handle position */
+}
+
+.rc-slider:hover .rc-slider-handle {
+    border-color: #3399ff;  /* Example hover effect */
+}
+
+
