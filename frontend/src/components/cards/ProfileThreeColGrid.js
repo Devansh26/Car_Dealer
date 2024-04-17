@@ -5,9 +5,9 @@ import { css } from "styled-components/macro";
 import { Container, ContentWithPaddingXl } from "../misc/Layouts.js";
 import { SectionHeading, Subheading as SubheadingBase } from "../misc/Headings";
 import {SectionDescription} from "../misc/Typography";
-import { ReactComponent as TwitterIcon} from "../images/twitter-icon.svg";
-import { ReactComponent as LinkedinIcon} from "../images/linkedin-icon.svg";
-import { ReactComponent as GithubIcon } from "../images/github-icon.svg";
+import { ReactComponent as TwitterIcon} from "../../images/twitter-icon.svg";
+import { ReactComponent as LinkedinIcon} from "../../images/linkedin-icon.svg";
+import { ReactComponent as GithubIcon } from "../../images/github-icon.svg";
 
 const HeadingContainer = tw.div``
 const Heading = tw(SectionHeading)``
@@ -43,12 +43,12 @@ const CardLinks = styled.div`
 export default ({
   heading = "Meet These Fine Folks.",
   subheading = "Our Team",
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  description = "Javascript Develoepers ",
   cards = [
     {
-      imageSrc: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
-      position: "Founder",
-      name: "Adam Cuppy",
+      imageSrc: "https://i.pinimg.com/736x/55/05/2d/55052d09449a44338d504deeabdb9f30.jpg",
+      position: "Full Stack Developer",
+      name: "Devansh Shah",
       links: [
         {
           url: "https://twitter.com",
@@ -65,9 +65,9 @@ export default ({
       ],
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
-      position: "Sr. Designer",
-      name: "Charlotte Hale",
+      imageSrc: "https://prodigits.co.uk/thumbs/wallpapers/p2/movies/44/cc2299c812359658.jpg",
+      position: "Back End Developer",
+      name: "Dharmil Chhadva",
       links: [
         {
           url: "https://twitter.com",
@@ -84,66 +84,9 @@ export default ({
       ],
     },
     {
-      imageSrc: "https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
-      position: "Jr. Designer",
-      name: "Silvester Wize",
-      links: [
-        {
-          url: "https://twitter.com",
-          icon: TwitterIcon,
-        },
-        {
-          url: "https://linkedin.com",
-          icon: LinkedinIcon,
-        },
-        {
-          url: "https://github.com",
-          icon: GithubIcon,
-        },
-      ],
-    },
-    {
-      imageSrc: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=2.95&w=512&h=512&q=80",
-      position: "Lead Developer",
-      name: "Himali Turn",
-      links: [
-        {
-          url: "https://twitter.com",
-          icon: TwitterIcon,
-        },
-        {
-          url: "https://linkedin.com",
-          icon: LinkedinIcon,
-        },
-        {
-          url: "https://github.com",
-          icon: GithubIcon,
-        },
-      ],
-    },
-    {
-      imageSrc: "https://images.unsplash.com/photo-1546820389-44d77e1f3b31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=3.45&w=512&h=512&q=80",
-      position: "Sr. Developer",
-      name: "Troye Sivan",
-      links: [
-        {
-          url: "https://twitter.com",
-          icon: TwitterIcon,
-        },
-        {
-          url: "https://linkedin.com",
-          icon: LinkedinIcon,
-        },
-        {
-          url: "https://github.com",
-          icon: GithubIcon,
-        },
-      ],
-    },
-    {
-      imageSrc: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fit=facearea&facepad=3.45&w=512&h=512&q=80",
-      position: "Quality Assurance",
-      name: "Holo Wo",
+      imageSrc: "https://wallpaper.dog/large/20575999.png",
+      position: "Designer",
+      name: "Sahil Hantaal",
       links: [
         {
           url: "https://twitter.com",

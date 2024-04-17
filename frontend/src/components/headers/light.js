@@ -87,10 +87,11 @@ export default ({roundedHeaderButton = false, logoLink, links, className, collap
 
     const defaultLinks = isLoggedIn() ? (
         <NavLinks key={1}>
-            <NavLink href="/#">About</NavLink>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/about">About</NavLink>
             <NavLink href="/cars">Cars</NavLink>
             <NavLink href="/orders">Orders</NavLink>
-            <NavLink href="/#">Contact Us</NavLink>
+            <NavLink href="/contact">Contact Us</NavLink>
             <NavLink href="/#" tw="lg:ml-12!">
                 {/* Show user's email if logged in */}
                 {localStorage.getItem("username")}

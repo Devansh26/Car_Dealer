@@ -30,10 +30,10 @@ export default () => {
                 imageSrc="https://i.pinimg.com/originals/80/8a/00/808a004f4663801c74e3a41d233db7ee.jpg"
                 imageCss={[imageCss, imageWidth, imageHeight]}
                 imageDecoratorBlob={true}
-                primaryButtonText="Rent Now"
+                primaryButtonText="Buy Now"
             />
             <Features/>
-            <SliderCard/>
+            {/*<SliderCard/>*/}
             <TrendingCard/>
             <MainFeature/>
             <Blog/>

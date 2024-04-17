@@ -36,7 +36,7 @@ export default ({
                     heading = "Modern React Templates, Just For You",
                     description = "Our templates are easy to setup, understand and customize. Fully modular components with a variety of pages and components.",
                     primaryButtonText = "Get Started",
-                    primaryButtonUrl = "#",
+                    primaryButtonUrl = "/cars",
                     imageSrc = "https://i.pinimg.com/originals/80/8a/00/808a004f4663801c74e3a41d233db7ee.jpg",
                     imageCss = null,
                     imageDecoratorBlob = false,
