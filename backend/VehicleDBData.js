@@ -22,8 +22,9 @@ const vehicleDocs = [
         VIN: "ZFF87CLC000234567",
         price: 249000,
         images: [
-            "https://example.com/ferrari488gtb1.jpg",
-            "https://example.com/ferrari488gtb2.jpg",
+            "./Car/ferrari 488 gtb 2018/1.jpg",
+            "./Car/ferrari 488 gtb 2018/3.jpg",
+            "./Car/ferrari 488 gtb 2018/4.jpg",
         ],
     },
     {
@@ -35,8 +36,9 @@ const vehicleDocs = [
         VIN: "ZHWUF7ZF8JLA12345",
         price: 289500,
         images: [
-            "https://example.com/huracanperformante1.jpg",
-            "https://example.com/huracanperformante2.jpg",
+            "./Car/lamborghini huracan perfomante 2019/2.jpg",
+            "./Car/lamborghini huracan perfomante 2019/3.jpg",
+            "./Car/lamborghini huracan perfomante 2019/4.jpg",
         ],
     },
     {
@@ -48,8 +50,9 @@ const vehicleDocs = [
         VIN: "WP0AF2A99PS123456",
         price: 215000,
         images: [
-            "https://example.com/911gt3rs1.jpg",
-            "https://example.com/911gt3rs2.jpg",
+            "./Car/porshe 911 gt3 rs 2023/1.jpg",
+            "./Car/porshe 911 gt3 rs 2023/3.jpg",
+            "./Car/porshe 911 gt3 rs 2023/4.jpg",
         ],
     },
     {
@@ -61,8 +64,10 @@ const vehicleDocs = [
         VIN: "SBM12ABC456789012",
         price: 295000,
         images: [
-            "https://example.com/mclaren720s1.jpg",
-            "https://example.com/mclaren720s2.jpg",
+            "./Car/mclaren 720s 2020/1.jpeg",
+            "./Car/mclaren 720s 2020/2.jpg",
+            "./Car/mclaren 720s 2020/3.jpg",
+            "./Car/mclaren 720s 2020/4.jpg",
         ],
     },
     {
@@ -74,8 +79,10 @@ const vehicleDocs = [
         VIN: "WUAVVAFR9JN012345",
         price: 199500,
         images: [
-            "https://example.com/audir8v10perf1.jpg",
-            "https://example.com/audir8v10perf2.jpg",
+            "./Car/audi r8 v10 performance 2021/1.jpg",
+            "./Car/audi r8 v10 performance 2021/2.png",
+            "./Car/audi r8 v10 performance 2021/3.jpg",
+            "./Car/audi r8 v10 performance 2021/4.jpeg",
         ],
     },
     {
@@ -87,8 +94,8 @@ const vehicleDocs = [
         VIN: "WDDXJ8JB6JA123456",
         price: 179000,
         images: [
-            "https://example.com/amggt1.jpg",
-            "https://example.com/amggt2.jpg",
+            "./Car/mercedes amg gt r 2022/2.jpg",
+            "./Car/mercedes amg gt r 2022/3.jpg",
         ],
     },
     {
@@ -100,8 +107,8 @@ const vehicleDocs = [
         VIN: "JN1AR5EF8AM123456",
         price: 215000,
         images: [
-            "https://example.com/gtr-nismo1.jpg",
-            "https://example.com/gtr-nismo2.jpg",
+            "./Car/nissan gtr nissmo 2020/2.jpg",
+            "./Car/nissan gtr nissmo 2020/3.jpg",
         ],
     },
     {
@@ -113,8 +120,10 @@ const vehicleDocs = [
         VIN: "1FA6P8CF2M5123456",
         price: 78000,
         images: [
-            "https://example.com/shelbygt500-1.jpg",
-            "https://example.com/shelbygt500-2.jpg",
+            "./Car/ford mustang shelby gt500 2021/1.jpg",
+            "./Car/ford mustang shelby gt500 2021/2.jpg",
+            "./Car/ford mustang shelby gt500 2021/3.png",
+            "./Car/ford mustang shelby gt500 2021/4.png",
         ],
     },
     {
@@ -126,8 +135,10 @@ const vehicleDocs = [
         VIN: "1G1YC2D67N5123456",
         price: 69500,
         images: [
-            "https://example.com/corvette-stingray1.jpg",
-            "https://example.com/corvette-stingray2.jpg",
+            "./Car/corvette stingray 2023/1.jpg",
+            "./Car/corvette stingray 2023/2.jpg",
+            "./Car/corvette stingray 2023/3.jpg",
+            "./Car/corvette stingray 2023/4.jpg",
         ],
     },
     {
@@ -139,8 +150,10 @@ const vehicleDocs = [
         VIN: "WBS8M9C07M5123456",
         price: 149000,
         images: [
-            "https://example.com/bmwm8comp1.jpg",
-            "https://example.com/bmwm8comp2.jpg",
+            "./Car/bmw m8 competiton frozen black/1.png",
+            "./Car/bmw m8 competiton frozen black/2.jpg",
+            "./Car/bmw m8 competiton frozen black/3.jpg",
+            "./Car/bmw m8 competiton frozen black/4.jpg",
         ],
     },
     {
@@ -152,8 +165,10 @@ const vehicleDocs = [
         VIN: "SAJDA4GX1MC123456",
         price: 109000,
         images: [
-            "https://example.com/jaguarftyper1.jpg",
-            "https://example.com/jaguarftyper2.jpg",
+            "./Car/jaugaur f type r coupe 2021 caldera red/1.jpg",
+            "./Car/jaugaur f type r coupe 2021 caldera red/2.jpg",
+            "./Car/jaugaur f type r coupe 2021 caldera red/3.png",
+            "./Car/jaugaur f type r coupe 2021 caldera red/4.jpeg",
         ],
     },
     {
@@ -165,8 +180,11 @@ const vehicleDocs = [
         VIN: "JTHT3BC64L5123456",
         price: 99000,
         images: [
-            "https://example.com/lexuslc5001.jpg",
-            "https://example.com/lexuslc5002.jpg",
+            "./Car/lexus lc500 2020 structural blue/1.jpg",
+            "./Car/lexus lc500 2020 structural blue/2.jpg",
+            "./Car/lexus lc500 2020 structural blue/3.jpg",
+            "./Car/lexus lc500 2020 structural blue/4.jpg",
+
         ],
     },
     {
@@ -282,8 +300,11 @@ const vehicleDocs = [
         VIN: "WZ1DB4CH5MW123456",
         price: 55000,
         images: [
-            "https://example.com/toyota-grsupra1.jpg",
-            "https://example.com/toyota-grsupra2.jpg",
+            "./Car/Toyota GR Supra/1.jpeg",
+            "./Car/Toyota GR Supra/2.jpeg",
+            "./Car/Toyota GR Supra/3.jpeg",
+            "./Car/Toyota GR Supra/4.jpeg",
+
         ],
     },
     {
@@ -295,8 +316,10 @@ const vehicleDocs = [
         VIN: "SHHFK8G74NU123456",
         price: 42000,
         images: [
-            "https://example.com/honda-civictyperprod1.jpg",
-            "https://example.com/honda-civictypeprod2.jpg",
+            "./Car/Honda  Civic Type R/1.jpeg",
+            "./Car/Honda  Civic Type R/2.jpeg",
+            "./Car/Honda  Civic Type R/3.jpeg",
+            "./Car/Honda  Civic Type R/4.jpeg",
         ],
     },
     {
@@ -308,8 +331,12 @@ const vehicleDocs = [
         VIN: "JM1NDAV77M0123456",
         price: 34000,
         images: [
-            "https://example.com/mazda-mx5miata1.jpg",
-            "https://example.com/mazda-mx5miata2.jpg",
+            "./Car/Mazda,  MX-5 Miata RF/1.jpeg",
+            "./Car/Mazda,  MX-5 Miata RF/2.jpeg",
+            "./Car/Mazda,  MX-5 Miata RF/3.jpeg",
+            "./Car/Mazda,  MX-5 Miata RF/4.jpeg",
+
+
         ],
     },
     {
@@ -321,8 +348,12 @@ const vehicleDocs = [
         VIN: "KMHTG6AF8MU123456",
         price: 28000,
         images: [
-            "https://example.com/hyundai-velostern1.jpg",
-            "https://example.com/hyundai-velostern2.jpg",
+            "./Car/Hyundai  Veloster N/1.jpeg",
+            "./Car/Hyundai  Veloster N/2.jpeg",
+            "./Car/Hyundai  Veloster N/3.jpeg",
+            "./Car/Hyundai  Veloster N/4.jpeg",
+
+
         ],
     },
 ];
