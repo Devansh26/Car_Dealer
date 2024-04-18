@@ -184,111 +184,6 @@ const vehicleDocs = [
             "./Car/lexus lc500 2020 structural blue/2.jpg",
             "./Car/lexus lc500 2020 structural blue/3.jpg",
             "./Car/lexus lc500 2020 structural blue/4.jpg",
-
-        ],
-    },
-    {
-        make: "Dodge",
-        model: "Challenger SRT Hellcat Redeye",
-        year: 2019,
-        color: "Go Mango",
-        KMs: 18000,
-        VIN: "2C3CDXCT2KH123456",
-        price: 73000,
-        images: [
-            "https://example.com/challenger-hellcat1.jpg",
-            "https://example.com/challenger-hellcat2.jpg",
-        ],
-    },
-    {
-        make: "Acura",
-        model: "NSX",
-        year: 2022,
-        color: "Curva Red",
-        KMs: 6000,
-        VIN: "19UNC1B04MA123456",
-        price: 165000,
-        images: [
-            "https://example.com/acuransx1.jpg",
-            "https://example.com/acuransx2.jpg",
-        ],
-    },
-    {
-        make: "Aston Martin",
-        model: "DBS Superleggera",
-        year: 2021,
-        color: "Hyper Red",
-        KMs: 4500,
-        VIN: "SCFKFBDL8MGS12345",
-        price: 319000,
-        images: [
-            "https://example.com/astonmartindbs1.jpg",
-            "https://example.com/astonmartindbs2.jpg",
-        ],
-    },
-    {
-        make: "Bentley",
-        model: "Continental GT Speed",
-        year: 2023,
-        color: "Glacier White",
-        KMs: 1800,
-        VIN: "SCBFR73W2NC123456",
-        price: 289000,
-        images: [
-            "https://example.com/bentleygtspeed1.jpg",
-            "https://example.com/bentleygtspeed2.jpg",
-        ],
-    },
-    {
-        make: "Maserati",
-        model: "MC20",
-        year: 2022,
-        color: "Giallo Corse",
-        KMs: 3200,
-        VIN: "ZAM57RRA6N1123456",
-        price: 219000,
-        images: [
-            "https://example.com/maserati-mc201.jpg",
-            "https://example.com/maserati-mc202.jpg",
-        ],
-    },
-    {
-        make: "Lotus",
-        model: "Emira",
-        year: 2023,
-        color: "Hethel Yellow",
-        KMs: 2500,
-        VIN: "SF9JC2BC5NT123456",
-        price: 92000,
-        images: [
-            "https://example.com/lotus-emira1.jpg",
-            "https://example.com/lotus-emira2.jpg",
-        ],
-    },
-    {
-        make: "Alfa Romeo",
-        model: "4C Spider",
-        year: 2020,
-        color: "Rosso Competizione",
-        KMs: 10000,
-        VIN: "ZAR95900005123456",
-        price: 69000,
-        images: [
-            "https://example.com/alfa-4cspider1.jpg",
-            "https://example.com/alfa-4cspider2.jpg",
-        ],
-    },
-    {
-        make: "Subaru",
-        model: "BRZ",
-        year: 2022,
-        color: "World Rally Blue Pearl",
-        KMs: 7000,
-        VIN: "JF1ZCAC13K9123456",
-        price: 33000,
-        images: [
-            "https://example.com/subaru-brz1.jpg",
-            "https://example.com/subaru-brz2.jpg",
         ],
     },
     {
@@ -304,7 +199,6 @@ const vehicleDocs = [
             "./Car/Toyota GR Supra/2.jpeg",
             "./Car/Toyota GR Supra/3.jpeg",
             "./Car/Toyota GR Supra/4.jpeg",
-
         ],
     },
     {
@@ -335,8 +229,6 @@ const vehicleDocs = [
             "./Car/Mazda,  MX-5 Miata RF/2.jpeg",
             "./Car/Mazda,  MX-5 Miata RF/3.jpeg",
             "./Car/Mazda,  MX-5 Miata RF/4.jpeg",
-
-
         ],
     },
     {
@@ -352,8 +244,6 @@ const vehicleDocs = [
             "./Car/Hyundai  Veloster N/2.jpeg",
             "./Car/Hyundai  Veloster N/3.jpeg",
             "./Car/Hyundai  Veloster N/4.jpeg",
-
-
         ],
     },
 ];
